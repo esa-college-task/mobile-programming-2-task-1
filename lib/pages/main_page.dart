@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
-import 'genre_page.dart';
-import 'favorite_page.dart';
+import 'package:movie_app/pages/home_page.dart';
+import 'package:movie_app/pages/genre_page.dart';
+import 'package:movie_app/pages/favorite_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

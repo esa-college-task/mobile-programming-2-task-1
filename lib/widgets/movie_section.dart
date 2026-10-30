@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'movie_card.dart';
+import 'package:movie_app/widgets/movie_card.dart';
 
 class MovieSection extends StatelessWidget {
   final String title;

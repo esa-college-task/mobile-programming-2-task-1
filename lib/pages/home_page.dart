@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../data/movie_data.dart';
-import '../widgets/hero_carousel.dart';
-import '../widgets/movie_section.dart';
+import 'package:movie_app/data/movie_data.dart';
+import 'package:movie_app/widgets/hero_carousel.dart';
+import 'package:movie_app/widgets/movie_section.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../data/movie_data.dart';
-import '../widgets/movie_card.dart';
+import 'package:movie_app/data/movie_data.dart';
+import 'package:movie_app/widgets/movie_card.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});
