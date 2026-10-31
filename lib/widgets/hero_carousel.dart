@@ -81,12 +81,26 @@ class HeroCarousel extends StatelessWidget {
                     ),
                     errorWidget: (context, url, error) => Container(
                       color: const Color(0xFF242424),
-                      child: const Center(
-                        child: Icon(
-                          Icons.movie_creation_outlined,
-                          size: 48,
-                          color: Colors.white24,
-                        ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.movie_creation_outlined,
+                            color: Colors.white38,
+                            size: 48,
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            title,
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
