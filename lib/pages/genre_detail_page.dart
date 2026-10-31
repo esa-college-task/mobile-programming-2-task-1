@@ -3,15 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/pages/movie_detail_page.dart';
 import 'package:movie_app/widgets/movie_card.dart';
 
-class CategoryDetailPage extends StatelessWidget {
+class GenreDetailPage extends StatelessWidget {
   final String title;
   final List<Map<String, dynamic>> movies;
 
-  const CategoryDetailPage({
-    super.key,
-    required this.title,
-    required this.movies,
-  });
+  const GenreDetailPage({super.key, required this.title, required this.movies});
 
   @override
   Widget build(BuildContext context) {
