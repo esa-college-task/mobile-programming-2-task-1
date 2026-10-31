@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:movie_app/pages/category_detail_page.dart';
 import 'package:movie_app/widgets/movie_card.dart';
 
 class MovieSection extends StatelessWidget {
@@ -36,7 +37,18 @@ class MovieSection extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTap: onMoreTap,
+                onTap: onMoreTap ??
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CategoryDetailPage(
+                            title: title,
+                            movies: movies,
+                          ),
+                        ),
+                      );
+                    },
                 child: const Text(
                   'More',
                   style: TextStyle(
@@ -59,7 +71,11 @@ class MovieSection extends StatelessWidget {
             itemCount: movies.length,
             separatorBuilder: (context, index) => const SizedBox(width: 12),
             itemBuilder: (context, index) {
-              return MovieCard(movie: movies[index], width: 110, height: 160);
+              return MovieCard(
+                movie: movies[index],
+                width: 110,
+                height: 160,
+              );
             },
           ),
         ),
