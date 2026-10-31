@@ -1,4 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
+import 'package:movie_app/pages/movie_detail_page.dart';
 
 class MovieCard extends StatelessWidget {
   final Map<String, dynamic> movie;
@@ -16,11 +19,19 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String posterUrl = movie['poster'];
-    final String title = movie['title'];
+    final posterUrl = movie['poster'];
+    final title = movie['title'];
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap ??
+          () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MovieDetailPage(movie: movie),
+              ),
+            );
+          },
       child: Container(
         width: width,
         height: height,
@@ -37,53 +48,48 @@ class MovieCard extends StatelessWidget {
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(8),
-          child: Image.network(
-            posterUrl,
+          child: CachedNetworkImage(
+            imageUrl: posterUrl,
             fit: BoxFit.cover,
-            loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress == null) return child;
-              return Container(
-                color: const Color(0xFF1E1E1E),
-                child: const Center(
-                  child: SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      color: Colors.white38,
-                    ),
+            placeholder: (context, url) => Container(
+              color: const Color(0xFF1E1E1E),
+              child: const Center(
+                child: SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: Colors.white38,
                   ),
                 ),
-              );
-            },
-            errorBuilder: (context, error, stackTrace) {
-              return Container(
-                color: const Color(0xFF1F1F1F),
-                padding: const EdgeInsets.all(8),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.movie_creation_outlined,
-                      color: Colors.white38,
-                      size: 28,
+              ),
+            ),
+            errorWidget: (context, url, error) => Container(
+              color: const Color(0xFF1F1F1F),
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.movie_creation_outlined,
+                    color: Colors.white38,
+                    size: 28,
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Colors.white70,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w500,
                     ),
-                    const SizedBox(height: 6),
-                    Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: Colors.white70,
-                        fontSize: 10,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),
